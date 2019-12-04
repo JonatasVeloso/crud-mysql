@@ -8,6 +8,7 @@ public class CrudmysqlApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CrudmysqlApplication.class, args);
+		System.out.println("Context: Aplicação iniciada com sucesso!");
 	}
 
 }
