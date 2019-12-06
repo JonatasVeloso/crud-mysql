@@ -36,7 +36,7 @@ public class UsuarioController {
 		usuarioService.salvar(usuario);
 	}
 	
-	@DeleteMapping(path = "deleta/id")
+	@DeleteMapping(path = "deleta/{id}")
 	public void deletar(@PathVariable("id") Long id) {
 		usuarioService.deletar(id);
 	}
