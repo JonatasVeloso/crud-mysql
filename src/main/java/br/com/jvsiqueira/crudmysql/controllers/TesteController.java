@@ -29,9 +29,9 @@ public class TesteController {
 	}
 	
 	@PostMapping(path = "usuarios")
-	public String salvaUsuario(@ModelAttribute Usuario usuario, Model model) {
+	public String salvaUsuario(@ModelAttribute Usuario usuario) {
 		usuarioService.salvar(usuario);
-		model.addAttribute("usuarios", usuario);
+		//model.addAttribute("usuarios", usuario);
 		return "salvo-com-sucesso";
 	}
 	
