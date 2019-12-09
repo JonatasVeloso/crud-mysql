@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Usuario {
@@ -23,15 +24,26 @@ public class Usuario {
 	@Column(name = "usuario_email")
 	private String email;
 	
-	@ManyToMany
-	private Set<Perfil> perfil;
+	@ManyToOne
+	private Perfil perfil;
 	
-	public Set<Perfil> getPerfil() {
+	@ManyToMany
+	private Set<Carro> carro;
+	
+	public Perfil getPerfil() {
 		return perfil;
 	}
 
-	public void setPerfil(Set<Perfil> perfil) {
+	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
+	}
+	
+	public Set<Carro> getCarro() {
+		return carro;
+	}
+
+	public void setCarro(Set<Carro> carro) {
+		this.carro = carro;
 	}
 
 	public Long getId() {
