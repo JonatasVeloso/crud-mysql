@@ -22,7 +22,11 @@ public class UsuarioService {
 		return usuarioRepository.findAll();
 	}
 	
-	public void deletar(Long id) {
-		usuarioRepository.deleteById(id);
+	public String deletar(Long id) {
+		if(usuarioRepository.existsById(id)) {
+			usuarioRepository.deleteById(id);
+			return "Usuário Deletado com Sucesso!";
+		}
+		return "Usuário não existe!";	
 	}
 }

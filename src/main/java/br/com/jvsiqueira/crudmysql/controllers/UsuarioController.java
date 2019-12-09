@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -23,7 +24,7 @@ public class UsuarioController {
 	
 	@Autowired
 	UsuarioService usuarioService;
-
+	
 	@GetMapping(path = "consulta")
 	public List<Usuario> consultaTodos() {
 		List<Usuario> lista = usuarioService.consultaTodos();
@@ -37,8 +38,8 @@ public class UsuarioController {
 	}
 	
 	@DeleteMapping(path = "deleta/{id}")
-	public void deletar(@PathVariable("id") Long id) {
-		usuarioService.deletar(id);
+	public String deletar(@PathVariable("id") Long id) {
+		return usuarioService.deletar(id);
 	}
 	
 	@PutMapping(path = "altera")

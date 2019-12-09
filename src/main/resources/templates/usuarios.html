@@ -5,6 +5,14 @@
 <title>Usuarios</title>
 </head>
 <body>
+	<form action="#" th:action="@{/usuarios}" th:object="${usuario}" method="post">
+		<label>Nome: </label>
+		<input type="text" th:field="*{nome}"/>
+		<label>Email: </label>
+		<input type="text" th:field="*{email}"/>
+		<input type="submit" value="salva"/>
+	</form>
+	
 	<table border="1">
 		<tr>
 			<th>Nome</th>
@@ -15,5 +23,6 @@
 			<td th:text="${usuarios.email}"></td>
 		</tr>
 	</table>
+
 </body>
 </html>
