@@ -1,0 +1,12 @@
+<body>
+	<table border="1">
+		<tr>
+			<th>Perfil</th>
+			<th>Ativo</th>
+		</tr>	
+		<tr th:each="perfis : ${perfilList}">
+			<td th:text="${perfis.descricao}"></td>
+			<td th:text="${perfis.status}"></td>
+		</tr>
+	</table>
+</body>

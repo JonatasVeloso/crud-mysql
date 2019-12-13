@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import br.com.jvsiqueira.crudmysql.repositories.PerfilRepository;
+
 @Entity
 public class Usuario {
 	
@@ -29,6 +33,12 @@ public class Usuario {
 	
 	@ManyToMany
 	private Set<Carro> carro;
+		
+	public Usuario() {}
+	
+	public Usuario(Perfil perfil) {
+		this.perfil = perfil;
+	}
 	
 	public Perfil getPerfil() {
 		return perfil;
@@ -68,5 +78,11 @@ public class Usuario {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", perfil=" + perfil + ", carro=" + carro
+				+ "]";
 	}
 }

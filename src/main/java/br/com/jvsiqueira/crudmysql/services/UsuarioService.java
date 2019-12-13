@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.jvsiqueira.crudmysql.model.Perfil;
 import br.com.jvsiqueira.crudmysql.model.Usuario;
+import br.com.jvsiqueira.crudmysql.repositories.PerfilRepository;
 import br.com.jvsiqueira.crudmysql.repositories.UsuarioRepository;
 
 @Service
@@ -14,19 +16,35 @@ public class UsuarioService {
 	@Autowired
 	UsuarioRepository usuarioRepository;
 	
-	public void salvar(Usuario usuario) {
-		usuarioRepository.save(usuario);
+	@Autowired
+	PerfilRepository perfilRepository;
+	
+	public String save(Usuario usuario) {
+		if(perfilRepository.count() > 0) {
+			usuarioRepository.save(usuario);
+			return "Salvo com sucesso";
+		}
+		return "Não existe nenhum perfil, favor cadastrar um perfil.";
 	}
 	
-	public List<Usuario> consultaTodos() {
+	public List<Usuario> findAll() {
 		return usuarioRepository.findAll();
 	}
 	
-	public String deletar(Long id) {
+	public String delete(Long id) {
 		if(usuarioRepository.existsById(id)) {
 			usuarioRepository.deleteById(id);
 			return "Usuário Deletado com Sucesso!";
 		}
 		return "Usuário não existe!";	
+	}
+	
+	public String update(Usuario usuario) {
+		try {
+			usuarioRepository.save(usuario);
+			return "Alterado com sucesso";
+		} catch (Exception e) {
+			return "Erro ao alterar usuário: " + e;
+		}			
 	}
 }

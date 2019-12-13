@@ -63,5 +63,12 @@ public class Perfil {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	@Override
+	public String toString() {
+		return "Perfil [id=" + id + ", grau=" + grau + ", descricao=" + descricao + ", status=" + status + "]";
 	}	
+	
+	
 }

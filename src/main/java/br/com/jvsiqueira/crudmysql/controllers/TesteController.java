@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.jvsiqueira.crudmysql.model.Perfil;
 import br.com.jvsiqueira.crudmysql.model.Usuario;
+import br.com.jvsiqueira.crudmysql.services.PerfilService;
 import br.com.jvsiqueira.crudmysql.services.UsuarioService;
 
 @Controller
@@ -20,23 +22,31 @@ public class TesteController {
 	@Autowired
 	UsuarioService usuarioService;
 	
+	@Autowired
+	PerfilService perfilService;
+	
 	@GetMapping(path = "usuarios")
 	public String listaUsuario(Model model) {
-		List<Usuario> lista = usuarioService.consultaTodos(); 
+		List<Usuario> lista = usuarioService.findAll(); 
+		Perfil perfil = perfilService.findDefault();
 		model.addAttribute("userList", lista);
-		model.addAttribute("usuario", new Usuario());
+		Usuario usuario= new Usuario(perfil);
+		System.out.println(usuario);
+		model.addAttribute("usuario", usuario);
 		return "usuarios";
 	}
 	
-	@PostMapping(path = "usuarios")
-	public String salvaUsuario(@ModelAttribute Usuario usuario) {
-		usuarioService.salvar(usuario);
-		//model.addAttribute("usuarios", usuario);
-		return "salvo-com-sucesso";
+	@GetMapping(path = "perfis")
+	public String find(Model model) {
+		List<Perfil> perfilList = perfilService.findAll();
+		model.addAttribute("perfilList", perfilList);
+		return "perfis";
 	}
 	
-	@GetMapping(path = "teste")
-	public void teste() {
-		System.out.println("Chegou aqui");
+	@PostMapping(path = "usuarios")
+	public String salvaUsuario(@ModelAttribute Usuario usuario, Model model) {
+		String mensagem = usuarioService.save(usuario);
+		model.addAttribute("mensagem", mensagem);
+		return "salvo-com-sucesso";
 	}
 }
