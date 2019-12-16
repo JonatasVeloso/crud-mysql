@@ -10,10 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import br.com.jvsiqueira.crudmysql.repositories.PerfilRepository;
-
 @Entity
 public class Usuario {
 	

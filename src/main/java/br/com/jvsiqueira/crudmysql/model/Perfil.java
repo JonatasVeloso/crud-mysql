@@ -7,8 +7,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import org.springframework.boot.context.properties.bind.DefaultValue;
+
 import br.com.jvsiqueira.crudmysql.enums.StatusDefault;
+import br.com.jvsiqueira.crudmysql.enums.StatusPerfil;
 
 @Entity
 public class Perfil {
@@ -80,6 +81,4 @@ public class Perfil {
 	public String toString() {
 		return "Perfil [id=" + id + ", grau=" + grau + ", descricao=" + descricao + ", status=" + status + "]";
 	}	
-	
-	
 }

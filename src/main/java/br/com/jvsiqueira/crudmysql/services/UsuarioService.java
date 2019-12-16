@@ -20,7 +20,12 @@ public class UsuarioService {
 	PerfilRepository perfilRepository;
 	
 	public String save(Usuario usuario) {
+		
 		if(perfilRepository.count() > 0) {
+			if(usuario.getPerfil() == null) {
+				Perfil perfil = perfilRepository.findDefault();
+				usuario.setPerfil(perfil);
+			}
 			usuarioRepository.save(usuario);
 			return "Salvo com sucesso";
 		}

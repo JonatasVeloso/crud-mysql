@@ -11,7 +11,7 @@ public interface PerfilRepository extends CrudRepository<Perfil, Long>{
 
 	List<Perfil> findAll();
 	
-	@Query(value = "select * from Perfil p where p.perfil_descricao = 'Comum'",
+	@Query(value = "select * from Perfil p where p.perfil_default = 'SIM'",
 			nativeQuery = true)
 	public Perfil findDefault();
 }
