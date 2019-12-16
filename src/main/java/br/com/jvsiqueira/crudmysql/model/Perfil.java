@@ -7,10 +7,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import org.springframework.boot.context.properties.bind.DefaultValue;
-
-import net.bytebuddy.implementation.bind.annotation.Default;
+import br.com.jvsiqueira.crudmysql.enums.StatusDefault;
 
 @Entity
 public class Perfil {
@@ -29,10 +27,23 @@ public class Perfil {
 	@Enumerated(EnumType.STRING)
 	private StatusPerfil status;
 	
+	@Column(name = "perfil_default")
+	@Enumerated(EnumType.STRING)
+	private StatusDefault perfil_default;
+	
 	public Perfil() {
 		status = StatusPerfil.ATIVO;
+		perfil_default = StatusDefault.NAO;
 	}
 	
+	public StatusDefault getPerfil_default() {
+		return perfil_default;
+	}
+
+	public void setPerfil_default(StatusDefault perfil_default) {
+		this.perfil_default = perfil_default;
+	}
+
 	public StatusPerfil getStatus() {
 		return status;
 	}
