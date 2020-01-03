@@ -2,6 +2,7 @@ package br.com.jvsiqueira.crudmysql.controllers;
 
 import java.util.List;
 
+import org.hibernate.cache.spi.AbstractRegionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,10 +38,9 @@ public class TesteController {
 	}
 	
 	@GetMapping(path = "perfis")
-	public String find(Model model) {
+	public void find(Model model) {
 		List<Perfil> perfilList = perfilService.findAll();
 		model.addAttribute("perfilList", perfilList);
-		return "perfis";
 	}
 	
 	@PostMapping(path = "usuarios")
@@ -48,5 +48,23 @@ public class TesteController {
 		String mensagem = usuarioService.save(usuario);
 		model.addAttribute("mensagem", mensagem);
 		return "salvo-com-sucesso";
+	}
+
+	@GetMapping(path = "lambda")
+	public void lambda(){
+
+		// FAZENDO SEM UTILIZAR O LAMBDA
+		Runnable r1 = new Runnable() {
+			@Override
+			public void run() {
+				System.out.println("TESTE");
+			}
+		};
+
+		// FAZENDO UTILIZANDO O LAMBDA
+		Runnable r2 = () -> System.out.println("TESTE2");
+
+		r1.run();
+		r2.run();
 	}
 }
